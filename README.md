@@ -31,3 +31,6 @@ Note: corpus.txt is our data. You can use your own.
 > uvicorn main:app --reload
 
 5. Open index.html in a browser and there you go!
+
+
+Associated Shares: <a href="https://www.linkedin.com/posts/arihara-sudhan_peacock-llm-rag-activity-7283640113522253825-_-5P?utm_source=social_share_sheet&utm_medium=member_desktop_web">LINKEDIN</a> | <a href="https://medium.com/@southern_boy/a-simple-rag-for-your-peacock-0f5a766db781">MEDIUM</a> | <a href="https://arihara-sudhan.github.io/blog/The-Peacock-Legend">BLOG</a>
