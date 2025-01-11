@@ -1,7 +1,7 @@
 # Peacock-RAG
 <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Pqc2FQ1sCDG9cjFEClm5Ow.png" width="100%"/>
 Peacock-RAG is an AI-powered conversational application built with LangChain and FastAPI. This is a simple Q&A system where users can interact with the AI by asking questions, and the system provides intelligent responses derived from a context provided by the corpus.
-
+<img src="https://miro.medium.com/v2/format:webp/1*SbdmGHAH2gURcDERcMnfxw.png" width="100%"/>
 ## Features
 
 - **Conversational AI**: Interact with the AI by asking questions, and get responses based on the context in the provided corpus.
