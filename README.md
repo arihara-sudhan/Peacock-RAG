@@ -25,7 +25,7 @@ HUGGINGFACE_API_TOKEN: Your HuggingFace API token to use models from HuggingFace
 
 3. Create Vectorized Data (Embeddings 🤥)
 > python3 create_vector.py
-Note: corpus.txt is our data. You can use your own.
+- Note: corpus.txt is our data. You can use your own.
 
 4. Run the application,
 > uvicorn main:app --reload
