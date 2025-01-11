@@ -29,3 +29,5 @@ Note: corpus.txt is our data. You can use your own.
 
 4. Run the application,
 > uvicorn main:app --reload
+
+5. Open index.html in a browser and there you go!
