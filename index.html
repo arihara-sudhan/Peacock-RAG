@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with AI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+        * {
+            color: white;
+            font-family: "Inter", serif;
+            font-size: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #212121;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100vh; /* Full height */
+            font-family: "Inter", serif;
+            padding: 1rem;
+            align-items: center;
+        }
+
+        .chat {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 4rem; /* Leave space for input box */
+            overflow-y: auto;
+            padding-right: 1rem;
+            height: 75vh; /* Adjust height */
+        }
+
+        .user, .ai {
+            padding: 0.7rem;
+            margin: 0.7rem;
+            border-radius: 1rem;
+            max-width: fit-content;
+            word-wrap: break-word;
+            margin-bottom: 1rem;
+        }
+
+        .user {
+            background-color: #2F2F2F;
+            align-self: flex-end;
+        }
+
+        .ai {
+            background-color: #3F3F3F;
+            align-self: flex-start;
+        }
+
+        input {
+            color: white;
+            background-color: #2F2F2F;
+            border-radius: 1rem;
+            border: none;
+            padding: 0.7rem;
+            width: 100%;
+            height: 50%;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            margin-left: 1rem;
+            background-color: #006A4E;
+            border: none;
+            margin-bottom: 1rem;
+            border-radius: 1rem;
+            padding: 1rem;
+            font-size: 1rem;
+            width: 13%;
+        }
+        button:active {
+            background-color: white;
+            color: #006A4E;
+        }
+        .input-here {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat" id="chat"></div>
+    <div class="input-here">
+        <input type="text" id="question" placeholder="Type your question..." />
+        <button onclick="askQuestion()">Ask</button>
+    </div>
+    <script>
+        const chatBox = document.getElementById('chat');
+        const questionInput = document.getElementById('question');
+
+        function appendMessage(content, sender) {
+            const div = document.createElement('div');
+            div.classList.add(sender);
+            div.innerText = content;
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        async function askQuestion() {
+            const question = questionInput.value;
+            if (!question) return;
+
+            appendMessage(`${question}`, 'user');
+            questionInput.value = '';
+
+            const response = await fetch('http://127.0.0.1:8000/ask/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question: question, chat_history: [] })
+            });
+
+            const data = await response.json();
+            
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data.answer, 'text/html');
+            const answerText = doc.querySelector('p') ? doc.querySelector('p').innerText : 'No answer available';
+
+            appendMessage(`${answerText}`, 'ai');
+        }
+    </script>
+</body>
+</html>
