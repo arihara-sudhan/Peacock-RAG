@@ -5,7 +5,7 @@ from langchain.prompts import PromptTemplate
 import config
 
 def setup_qa_chain(vector_store):
-    #os.environ["HUGGINGFACEHUB_API_TOKEN"] = config.HUGGINGFACE_API_TOKEN
+    #os.environ["HUGGINGFACEHUB_API_TOKEN"] = config.HUGGINGFACEHUB_API_TOKEN
 
     llm = HuggingFaceHub(
         repo_id="tiiuae/falcon-7b-instruct",
